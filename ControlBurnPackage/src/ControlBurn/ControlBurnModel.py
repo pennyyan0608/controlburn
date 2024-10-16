@@ -1826,9 +1826,7 @@ class ControlBurnRegressor:
         best_nfeats = results_agg.sort_values(('accuracy','mean'),ascending = True)\
         .head(1)['num_feats'].values[0]
 
-        best_feats = list(np.array(feats_all)\
-                       [[len(x) == best_nfeats for x in feats_all]])
-
+        best_feats = [x for x in feats_all if len(x) == best_nfeats]
         best_feats = list(set([tuple(sorted(i)) for i in best_feats]))
         best_alpha = results.sort_values('accuracy',
                                         ascending = True)['alpha'].values[0]
